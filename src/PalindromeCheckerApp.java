@@ -1,20 +1,22 @@
 import java.util.Scanner;
 
-public class PalindromeCheckerApp {
+import java.util.Scanner;
+
+public class PalindromeChecker {
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Welcome to Palindrome Checker App!");
+        System.out.println("=== Palindrome Checker App ===");
         System.out.print("Enter a word: ");
 
-        String word = scanner.nextLine();
+        String input = scanner.nextLine();
 
-        if (isPalindrome(word)) {
-            System.out.println(word + " is a Palindrome.");
+        if (isPalindrome(input)) {
+            System.out.println(input + " is a Palindrome.");
         } else {
-            System.out.println(word + " is NOT a Palindrome.");
+            System.out.println(input + " is NOT a Palindrome.");
         }
 
         scanner.close();
@@ -22,12 +24,8 @@ public class PalindromeCheckerApp {
 
     public static boolean isPalindrome(String input) {
 
-        String reversed = "";
-
-        for (int i = input.length() - 1; i >= 0; i--) {
-            reversed += input.charAt(i);
-        }
+        String reversed = new StringBuilder(input).reverse().toString();
 
         return input.equalsIgnoreCase(reversed);
     }
-}
+}}
