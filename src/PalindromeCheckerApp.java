@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import java.util.Scanner;
 
+import java.util.Scanner;
+
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
@@ -16,9 +18,9 @@ public class PalindromeCheckerApp {
         String input = scanner.nextLine();
 
         if (isPalindrome(input)) {
-            System.out.println("It is a Palindrome.");
+            System.out.println("\"" + input + "\" is a Palindrome.");
         } else {
-            System.out.println("It is NOT a Palindrome.");
+            System.out.println("\"" + input + "\" is NOT a Palindrome.");
         }
 
         scanner.close();
@@ -26,8 +28,8 @@ public class PalindromeCheckerApp {
 
     public static boolean isPalindrome(String input) {
 
-        // Remove spaces & convert to lowercase
-        String cleaned = input.replaceAll("\\s+", "").toLowerCase();
+        // Remove all non-alphanumeric characters
+        String cleaned = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
         String reversed = new StringBuilder(cleaned).reverse().toString();
 
