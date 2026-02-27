@@ -2,21 +2,23 @@ import java.util.Scanner;
 
 import java.util.Scanner;
 
-public class PalindromeChecker {
+import java.util.Scanner;
+
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("=== Palindrome Checker App ===");
-        System.out.print("Enter a word: ");
+        System.out.print("Enter text: ");
 
         String input = scanner.nextLine();
 
         if (isPalindrome(input)) {
-            System.out.println(input + " is a Palindrome.");
+            System.out.println("It is a Palindrome.");
         } else {
-            System.out.println(input + " is NOT a Palindrome.");
+            System.out.println("It is NOT a Palindrome.");
         }
 
         scanner.close();
@@ -24,8 +26,11 @@ public class PalindromeChecker {
 
     public static boolean isPalindrome(String input) {
 
-        String reversed = new StringBuilder(input).reverse().toString();
+        // Remove spaces & convert to lowercase
+        String cleaned = input.replaceAll("\\s+", "").toLowerCase();
 
-        return input.equalsIgnoreCase(reversed);
+        String reversed = new StringBuilder(cleaned).reverse().toString();
+
+        return cleaned.equals(reversed);
     }
-}}
+}
