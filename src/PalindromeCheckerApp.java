@@ -2,59 +2,39 @@ import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
-    // Method to check palindrome
-    public static boolean isPalindrome(String input) {
+    // Recursive function to check palindrome
+    public static boolean isPalindrome(String str, int start, int end) {
 
-        int left = 0;
-        int right = input.length() - 1;
-
-        while (left < right) {
-            if (input.charAt(left) != input.charAt(right)) {
-                return false;
-            }
-            left++;
-            right--;
+        // Base condition
+        if (start >= end) {
+            return true;
         }
 
-        return true;
+        // If characters do not match
+        if (str.charAt(start) != str.charAt(end)) {
+            return false;
+        }
+
+        // Recursive call
+        return isPalindrome(str, start + 1, end - 1);
     }
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        int choice;
 
-        do {
-            System.out.println("\n===== Palindrome Checker Menu =====");
-            System.out.println("1. Check Palindrome");
-            System.out.println("2. Exit");
-            System.out.print("Enter your choice: ");
+        System.out.println("UC9: Recursive Palindrome Checker");
+        System.out.print("Enter a string: ");
 
-            choice = scanner.nextInt();
-            scanner.nextLine(); // consume newline
+        String input = scanner.nextLine();
 
-            switch (choice) {
+        boolean result = isPalindrome(input, 0, input.length() - 1);
 
-                case 1:
-                    System.out.print("Enter a string: ");
-                    String input = scanner.nextLine();
-
-                    if (isPalindrome(input)) {
-                        System.out.println("Result: \"" + input + "\" is a Palindrome");
-                    } else {
-                        System.out.println("Result: \"" + input + "\" is NOT a Palindrome");
-                    }
-                    break;
-
-                case 2:
-                    System.out.println("Exiting the application...");
-                    break;
-
-                default:
-                    System.out.println("Invalid choice! Please try again.");
-            }
-
-        } while (choice != 2);
+        if (result) {
+            System.out.println("Result: \"" + input + "\" is a Palindrome");
+        } else {
+            System.out.println("Result: \"" + input + "\" is NOT a Palindrome");
+        }
 
         scanner.close();
     }
