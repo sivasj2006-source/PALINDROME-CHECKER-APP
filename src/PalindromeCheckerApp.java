@@ -1,18 +1,16 @@
 import java.util.Scanner;
 
-public class PalindromeCheckerApp {
+// Palindrome service class (Encapsulation)
+class PalindromeChecker {
 
-    // Method to check palindrome after normalization
-    public static boolean isPalindrome(String input) {
-
-        // Remove spaces and convert to lowercase
-        String cleaned = input.replaceAll("\\s+", "").toLowerCase();
+    // Method to check palindrome
+    public boolean checkPalindrome(String input) {
 
         int left = 0;
-        int right = cleaned.length() - 1;
+        int right = input.length() - 1;
 
         while (left < right) {
-            if (cleaned.charAt(left) != cleaned.charAt(right)) {
+            if (input.charAt(left) != input.charAt(right)) {
                 return false;
             }
             left++;
@@ -21,20 +19,26 @@ public class PalindromeCheckerApp {
 
         return true;
     }
+}
+
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("UC10: Case-Insensitive & Space-Ignored Palindrome Checker");
+        System.out.println("UC11: Object-Oriented Palindrome Service");
         System.out.print("Enter a string: ");
 
         String input = scanner.nextLine();
 
-        boolean result = isPalindrome(input);
+        // Create object of service class
+        PalindromeChecker checker = new PalindromeChecker();
+
+        boolean result = checker.checkPalindrome(input);
 
         if (result) {
-            System.out.println("Result: \"" + input + "\" is a Palindrome (ignoring spaces & case)");
+            System.out.println("Result: \"" + input + "\" is a Palindrome");
         } else {
             System.out.println("Result: \"" + input + "\" is NOT a Palindrome");
         }
