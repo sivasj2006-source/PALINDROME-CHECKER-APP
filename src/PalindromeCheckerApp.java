@@ -1,38 +1,61 @@
 import java.util.Scanner;
 
-import java.util.Scanner;
-
-import java.util.Scanner;
-
-import java.util.Scanner;
-
 public class PalindromeCheckerApp {
+
+    // Method to check palindrome
+    public static boolean isPalindrome(String input) {
+
+        int left = 0;
+        int right = input.length() - 1;
+
+        while (left < right) {
+            if (input.charAt(left) != input.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+        int choice;
 
-        System.out.println("=== Palindrome Checker App ===");
-        System.out.print("Enter text: ");
+        do {
+            System.out.println("\n===== Palindrome Checker Menu =====");
+            System.out.println("1. Check Palindrome");
+            System.out.println("2. Exit");
+            System.out.print("Enter your choice: ");
 
-        String input = scanner.nextLine();
+            choice = scanner.nextInt();
+            scanner.nextLine(); // consume newline
 
-        if (isPalindrome(input)) {
-            System.out.println("\"" + input + "\" is a Palindrome.");
-        } else {
-            System.out.println("\"" + input + "\" is NOT a Palindrome.");
-        }
+            switch (choice) {
+
+                case 1:
+                    System.out.print("Enter a string: ");
+                    String input = scanner.nextLine();
+
+                    if (isPalindrome(input)) {
+                        System.out.println("Result: \"" + input + "\" is a Palindrome");
+                    } else {
+                        System.out.println("Result: \"" + input + "\" is NOT a Palindrome");
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("Exiting the application...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+            }
+
+        } while (choice != 2);
 
         scanner.close();
-    }
-
-    public static boolean isPalindrome(String input) {
-
-        // Remove all non-alphanumeric characters
-        String cleaned = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-
-        String reversed = new StringBuilder(cleaned).reverse().toString();
-
-        return cleaned.equals(reversed);
     }
 }
